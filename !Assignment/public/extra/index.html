@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-us" manifest="pouchnotes.manifest">
+<head>
+	<meta charset="utf-8" />
+	<title>Simple App
+</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    
+    <header>
+    <a href="../assignment/index.html"> <p>Back To HomePage</p></a>
+        <h1>A simple Notes Making Application</h1>
+        
+        
+    </header>
+    
+    <main>
+        <p class="rel">
+            <button class="clicktarget" type="button" data-action="viewnoteset" data-show="#allnotes" data-hide="section:not(#allnotes)">View Notes</button>
+        	<button class="clicktarget" type="button" data-show="#addnote" data-hide="section:not(#addnote)">Add Note</button>
+        </p>
+        
+        <section id="addnote">
+        <form id="noteform" method="post" data-show="#allnotes" data-hide="#addnote">
+            <div class="hide" id="buttonwrapper">
+                <button class="clicktarget edit" type="button">Edit Note</button>
+                <button class="clicktarget delete" type="button">Delete Note</button>
+            </div>
+            <p>
+                <input type="hidden" id="_rev" name="_rev" value="">
+                <input type="hidden" id="_id"  name="_id" value="">
+                <label for="notetitle">Title:</label>
+                <input type="text" id="notetitle" name="notetitle" placeholder="Untitled Note" value="">
+            </p>
+            <p>
+                <label for="note">Note text:</label>
+                <textarea id="note" name="note" cols="50" rows="5" placeholder="Add note text here. This field is required." required></textarea>
+            </p>
+            <p>
+                <label for="tags">Tags:</label>
+                <input type="text" id="tags" name="tags">
+                <span class="guidance">Separate tags with a comma</span>
+            </p>
+            
+            <p class="rel">
+                <input type="file" id="attachment" name="attachment" class="abs">
+                <label for="attachment" class="btn">Attachment:</label>
+                <span class="filelist"></span>
+    	    </p>
+            
+            <div id="attachments" class="hide">
+            	<h2>Attachments</h2>
+    	    	<ul id="attachmentlist"></ul>
+    	    </div>
+    	    
+            <p>
+                <button type="submit">Save Note</button>
+            </p>
+        </form>
+       </section>
+        
+        <section id="allnotes" class="hide">
+            <h2>Recent notes</h2>
+            <form id="searchnotes" method="get">
+                <p>
+                    <label for="q">Search</label> 
+                    <input type="search" id="q" name="q">
+                    <button type="submit">Search</button>
+                </p>
+            </form>
+            
+            
+            <table id="notelist">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date Created</th>
+                        <th>Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>    
+        </section>  
+    </main>
+    
+    <div id="syncdialog" class="dialog hide" data-action="close">
+        <div>
+            <button type="button" class="close" data-action="close">Close</button>
+        
+            <div class="progressbar">
+            	<progress max="100"></progress>
+            </div>
+        </div>
+    </div>
+    <div id="errordialog" class="dialog hide" data-action="close">
+        <div>
+            <button type="button" data-action="close"></button>
+            <h1>Error in the database</h1>
+            <div class="msg"></div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>@ manzar Ali</p>
+    </footer>
+    
+    <script src="js/pouchdb-nightly.min.js"></script>
+    <script src="js/application.js"></script>
+</body>
+</html>
